@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "280501527794",
+    "firebase_url": "https://cpmdweek1.firebaseio.com",
+    "project_id": "cpmdweek1",
+    "storage_bucket": "cpmdweek1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:280501527794:android:340fa87cf2d6940f",
+        "android_client_info": {
+          "package_name": "com.java2.heatherwolford.cpmdweek1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "280501527794-j78iljd2f2cr7io6itvq8n7988lv9qje.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjbatJl3_6kfSvD9mp_wkErSjzzlYsY7s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

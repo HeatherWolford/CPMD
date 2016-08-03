@@ -1,0 +1,111 @@
+//Heather Wolford
+//CPMD Week 1
+//August 2016
+
+package com.java2.heatherwolford.cpmdweek1;
+
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class FormActivity extends AppCompatActivity {
+
+    private final String TAG = "FormActivity: ";
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_form);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setLogo(R.mipmap.ic_launcher);
+
+        if (savedInstanceState == null){
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.container, new FormFragment())
+                    .commit();
+        }
+    }
+
+    //Adds item (add) to action bar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        System.out.println(TAG + "onCreateOptionsMenu");
+        getMenuInflater().inflate(R.menu.menu_form, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_save) {
+            EditText itemTxtInput = (EditText) findViewById(R.id.item_edit_text);
+            EditText qtyTxtInput = (EditText) findViewById(R.id.qty_edit_text);
+            if (itemTxtInput.getText().toString().equals("")){
+                Toast.makeText(this, "You must enter an item.", Toast.LENGTH_SHORT).show();
+            }else {
+                if (qtyTxtInput.getText().toString().equals("")) {
+                    Toast.makeText(this, "You must enter a quantity.", Toast.LENGTH_SHORT).show();
+                }
+                String groceryItem = itemTxtInput.getText().toString();
+                int amount = Integer.parseInt(qtyTxtInput.getText().toString());
+                Grocery grocery = new Grocery(groceryItem, amount);
+                addItem(grocery);
+            }
+        }else{
+            finish();
+        }
+        return true;
+    }
+
+    public void addItem(Grocery item) {
+        //Todo: Add functionality to add the item to the list
+        //Update the list
+        updateList();
+    }
+
+    public void updateList(){
+        //Todo: Update the list
+    }
+
+    @Override
+    protected void onStart(){
+        super .onStart();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+        // Quit if back is pressed
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            finish();
+            return true;
+        }else if (keyCode == KeyEvent.KEYCODE_HOME){
+            finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+}
