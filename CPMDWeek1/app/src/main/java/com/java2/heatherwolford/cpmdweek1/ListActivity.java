@@ -21,10 +21,12 @@ import java.util.ArrayList;
 public class ListActivity extends AppCompatActivity implements ListFragment.CustomListener{
 
     private final String TAG = "ListActivity";
+    public int currentPosition;
+    public ArrayList<Grocery> strainArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println(TAG + "Entered onCreate.");
+        System.out.println(TAG + " Entered onCreate.");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -77,14 +79,17 @@ public class ListActivity extends AppCompatActivity implements ListFragment.Cust
     }
 
     @Override
-    public void viewObject(int position) throws IOException {
+    public void viewItem(int position) throws IOException {
         //Todo: implement functionality
-    }
+        System.out.println(TAG + "viewItem.");
+        strainArrayList = FirebaseHelper.readFromFirebaseDatabase();
+        currentPosition = position;
+        Intent detailIntent = new Intent(this, DetailActivity.class);
+        detailIntent.putExtra(DetailActivity.ITEM_EXTRA, strainArrayList.get(position));
+        detailIntent.putExtra(DetailActivity.POSITION, position);
+        detailIntent.putExtra(DetailActivity.LIST_EXTRA, strainArrayList);
+        startActivity(detailIntent);
 
-    @Override
-    public ArrayList<Grocery> getListOfObjects() throws IOException {
-        //Todo: implement functionality and return arrayList of grocery objects
-        return null;
     }
 
     @Override

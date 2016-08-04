@@ -19,8 +19,7 @@ public class CustomAdapter extends BaseAdapter {
     private  static final long ID_CONSTANT = 0x01000000;
 
     Context mContext;
-    //CustomStorage customStorage = new CustomStorage();
-    ArrayList<Grocery> mGroceries = null;
+    ArrayList<Grocery> mGroceries = new ArrayList<>();
 
     public CustomAdapter(Context context, ArrayList<Grocery> groceries){
         mContext = context;
@@ -29,15 +28,8 @@ public class CustomAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        int size = 0;
-//        try {
-//            mGroceries = customStorage.readFromStorage(mContext);
-//            size = mGroceries.size();
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-//            System.out.println(TAG + " mGroceries was null.");
-//        }
-        return size;
+        mGroceries = FirebaseHelper.readFromFirebaseDatabase();
+        return mGroceries.size();
     }
 
     @Override
@@ -56,9 +48,7 @@ public class CustomAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.list_item, parent, false);
         }
         Grocery grocery = getItem(position);
-        TextView amountView = (TextView) convertView.findViewById(R.id.item_amount);
-        amountView.setText(grocery.getAmount());
-        TextView itemView = (TextView) convertView.findViewById(R.id.item);
+        TextView itemView = (TextView) convertView.findViewById(R.id.item_name);
         itemView.setText(grocery.getItem());
         return convertView;
     }

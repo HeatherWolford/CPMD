@@ -4,6 +4,7 @@
 
 package com.java2.heatherwolford.cpmdweek1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -11,9 +12,13 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends AppCompatActivity implements DetailFragment.DetailListener{
 
     private final String TAG = "DetailActivity: ";
+    public static final String ITEM_EXTRA = "STRAIN_ITEM_EXTRA";
+    public static final String POSITION = "POSITION";
+    public static final String LIST_EXTRA = "ARRAY_LIST_EXTRA";
+    private Grocery grocery;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +35,10 @@ public class DetailActivity extends AppCompatActivity {
                     .replace(R.id.container, new DetailFragment())
                     .commit();
         }
+
+        Intent detailIntent = getIntent();
+        if (detailIntent != null){
+            grocery = (Grocery) detailIntent.getSerializableExtra(ITEM_EXTRA);}
     }
 
     //Adds item (add) to action bar
@@ -47,6 +56,10 @@ public class DetailActivity extends AppCompatActivity {
             //Todo: Add delete functionality
             //Update the list
             updateList();
+        }else{
+            Intent listIntent = new Intent(this, ListActivity.class);
+            startActivity(listIntent);
+            finish();
         }
         return true;
     }
@@ -88,5 +101,10 @@ public class DetailActivity extends AppCompatActivity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public Grocery getObject() {
+        return grocery;
     }
 }

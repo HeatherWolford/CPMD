@@ -4,14 +4,18 @@
 
 package com.java2.heatherwolford.cpmdweek1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class FormActivity extends AppCompatActivity {
 
@@ -54,24 +58,36 @@ public class FormActivity extends AppCompatActivity {
                     Toast.makeText(this, "You must enter a quantity.", Toast.LENGTH_SHORT).show();
                 }
                 String groceryItem = itemTxtInput.getText().toString();
+                Log.d(TAG, groceryItem);
                 int amount = Integer.parseInt(qtyTxtInput.getText().toString());
+                Log.d(TAG, String.valueOf(amount));
                 Grocery grocery = new Grocery(groceryItem, amount);
                 addItem(grocery);
             }
         }else{
+            Intent listIntent = new Intent(this, ListActivity.class);
+            startActivity(listIntent);
             finish();
         }
         return true;
     }
 
     public void addItem(Grocery item) {
-        //Todo: Add functionality to add the item to the list
+        Log.d(TAG, "Entered addItem");
+        ArrayList<Grocery> groceryArrayList = FirebaseHelper.readFromFirebaseDatabase();
+        Log.d(TAG, "The size of groceryArrayList after reading from the database is: " + groceryArrayList.size());
+        groceryArrayList.add(item);
+        Log.d(TAG, "The size of groceryArrayList after adding the item is now: " + groceryArrayList.size());
+        FirebaseHelper.addToFirebaseDatabase(groceryArrayList);
         //Update the list
         updateList();
     }
 
     public void updateList(){
+        Log.d(TAG, "Entered updateList");
         //Todo: Update the list
+        Intent listIntent = new Intent(FormActivity.this, ListActivity.class);
+        startActivity(listIntent);
     }
 
     @Override

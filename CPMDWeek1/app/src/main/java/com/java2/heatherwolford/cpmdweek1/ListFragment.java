@@ -21,13 +21,20 @@ public class ListFragment extends Fragment {
     private final String TAG = "ListFragment";
 
     private CustomListener listener;
+    private static ListView listView;
 
     public interface CustomListener{
-        public void viewObject(int position) throws IOException;
-        public ArrayList<Grocery> getListOfObjects() throws IOException;
+        void viewItem(int position) throws IOException;
     }
 
-    public ListFragment() {
+    public static ListFragment newInstanceOf(ArrayList<Grocery> grocery ){
+        ListFragment fragment = new ListFragment();
+
+        Bundle args = new Bundle();
+        String ARG = "ARG";
+        args.putSerializable(ARG, grocery);
+        fragment.setArguments(args);
+        return  fragment;
     }
 
     @Override
@@ -41,40 +48,31 @@ public class ListFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_list, container, false);
-        return rootView;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view =  inflater.inflate(R.layout.fragment_list, container, false);
+        listView = (ListView) view.findViewById(R.id.list);
+        return view;
     }
 
     //how we are going to interact with the view
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        System.out.println(TAG + "Entered the onActivityCreated");
         super.onActivityCreated(savedInstanceState);
-        if (savedInstanceState != null) {
-            System.out.println(TAG + "Entered the savedInstanceState != null");
-        }
-        ListView listView = (ListView) getView().findViewById(R.id.list);
-        CustomAdapter customAdapter = null;
-        try {
-            customAdapter = new CustomAdapter(getActivity(), listener.getListOfObjects());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        listView.setAdapter(customAdapter);
+        ArrayList<Grocery> arrayList = FirebaseHelper.readFromFirebaseDatabase();
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        ListView strainListView = (ListView) getView().findViewById(R.id.list);
+        CustomAdapter customAdapter = new CustomAdapter(getActivity(), arrayList);
+        strainListView.setAdapter(customAdapter);
+
+        strainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 try {
-                    listener.viewObject(position);
+                    listener.viewItem(position);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         });
-        System.out.println(TAG + "Leaving the onActivityCreated");
     }
 }
-
