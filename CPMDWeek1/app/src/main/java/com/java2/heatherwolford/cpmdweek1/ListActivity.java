@@ -80,7 +80,6 @@ public class ListActivity extends AppCompatActivity implements ListFragment.Cust
 
     @Override
     public void viewItem(int position) throws IOException {
-        //Todo: implement functionality
         System.out.println(TAG + "viewItem.");
         strainArrayList = FirebaseHelper.readFromFirebaseDatabase();
         currentPosition = position;
