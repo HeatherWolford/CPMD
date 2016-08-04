@@ -5,15 +5,25 @@
 package com.java2.heatherwolford.cpmdweek1;
 
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,7 +32,11 @@ public class ListActivity extends AppCompatActivity implements ListFragment.Cust
 
     private final String TAG = "ListActivity";
     public int currentPosition;
-    public ArrayList<Grocery> strainArrayList = new ArrayList<>();
+    public ArrayList<Grocery> groceryArrayList = new ArrayList<>();
+    private FirebaseAuth mAuth;
+    private String mUser;
+    private DatabaseReference mDatabase;
+    public BroadcastReceiver receiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +71,22 @@ public class ListActivity extends AppCompatActivity implements ListFragment.Cust
                 }
             });
         }
+
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser().getUid();
+        mDatabase = FirebaseDatabase.getInstance().getReference(mUser);
+
+        receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                System.out.println(TAG + "Entered the Broadcast Receiver.");
+                groceryArrayList = (ArrayList<Grocery>) intent.getSerializableExtra(FirebaseHelper.EXTRA_LIST);
+                Log.d(TAG, "The size of the groceryArrayList is " + groceryArrayList.size());
+                ListView listView = (ListView) findViewById(R.id.list);
+                CustomAdapter customAdapter = new CustomAdapter(ListActivity.this, groceryArrayList);
+                listView.setAdapter(customAdapter);
+            }
+        };
     }
 
     @Override
@@ -81,12 +111,12 @@ public class ListActivity extends AppCompatActivity implements ListFragment.Cust
     @Override
     public void viewItem(int position) throws IOException {
         System.out.println(TAG + "viewItem.");
-        strainArrayList = FirebaseHelper.readFromFirebaseDatabase();
+        groceryArrayList = FirebaseHelper.readFromFireBaseDatabase();
         currentPosition = position;
         Intent detailIntent = new Intent(this, DetailActivity.class);
-        detailIntent.putExtra(DetailActivity.ITEM_EXTRA, strainArrayList.get(position));
+        detailIntent.putExtra(DetailActivity.ITEM_EXTRA, groceryArrayList.get(position));
         detailIntent.putExtra(DetailActivity.POSITION, position);
-        detailIntent.putExtra(DetailActivity.LIST_EXTRA, strainArrayList);
+        detailIntent.putExtra(DetailActivity.LIST_EXTRA, groceryArrayList);
         startActivity(detailIntent);
 
     }
@@ -94,6 +124,8 @@ public class ListActivity extends AppCompatActivity implements ListFragment.Cust
     @Override
     protected void onStart(){
         super .onStart();
+        LocalBroadcastManager.getInstance(this).registerReceiver((receiver),
+                new IntentFilter(FirebaseHelper.RESULT));
     }
 
     @Override
@@ -104,7 +136,7 @@ public class ListActivity extends AppCompatActivity implements ListFragment.Cust
     @Override
     protected void onStop() {
         super.onStop();
-        finish();
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
     }
 
     @Override

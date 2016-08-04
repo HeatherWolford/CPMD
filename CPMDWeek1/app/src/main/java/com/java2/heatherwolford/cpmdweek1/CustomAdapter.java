@@ -19,7 +19,7 @@ public class CustomAdapter extends BaseAdapter {
     private  static final long ID_CONSTANT = 0x01000000;
 
     Context mContext;
-    ArrayList<Grocery> mGroceries = new ArrayList<>();
+    ArrayList<Grocery> mGroceries;
 
     public CustomAdapter(Context context, ArrayList<Grocery> groceries){
         mContext = context;
@@ -28,8 +28,15 @@ public class CustomAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        mGroceries = FirebaseHelper.readFromFirebaseDatabase();
-        return mGroceries.size();
+        if (mGroceries != null) {
+            if (mGroceries.size() >= 0) {
+                return mGroceries.size();
+            } else {
+                return 0;
+            }
+        }else{
+            return 0;
+        }
     }
 
     @Override

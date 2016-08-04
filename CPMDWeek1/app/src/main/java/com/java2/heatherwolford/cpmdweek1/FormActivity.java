@@ -74,20 +74,11 @@ public class FormActivity extends AppCompatActivity {
 
     public void addItem(Grocery item) {
         Log.d(TAG, "Entered addItem");
-        ArrayList<Grocery> groceryArrayList = FirebaseHelper.readFromFirebaseDatabase();
-        Log.d(TAG, "The size of groceryArrayList after reading from the database is: " + groceryArrayList.size());
+        ArrayList<Grocery> groceryArrayList = FirebaseHelper.readFromFireBaseDatabase();
         groceryArrayList.add(item);
         Log.d(TAG, "The size of groceryArrayList after adding the item is now: " + groceryArrayList.size());
         FirebaseHelper.addToFirebaseDatabase(groceryArrayList);
-        //Update the list
-        updateList();
-    }
-
-    public void updateList(){
-        Log.d(TAG, "Entered updateList");
-        //Todo: Update the list
-        Intent listIntent = new Intent(FormActivity.this, ListActivity.class);
-        startActivity(listIntent);
+        finish();
     }
 
     @Override

@@ -8,9 +8,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.util.ArrayList;
 
 public class DetailActivity extends AppCompatActivity implements DetailFragment.DetailListener{
 
@@ -53,9 +56,7 @@ public class DetailActivity extends AppCompatActivity implements DetailFragment.
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_delete) {
-            //Todo: Add delete functionality
-            //Update the list
-            updateList();
+            deleteItem();
         }else{
             Intent listIntent = new Intent(this, ListActivity.class);
             startActivity(listIntent);
@@ -64,8 +65,17 @@ public class DetailActivity extends AppCompatActivity implements DetailFragment.
         return true;
     }
 
-    public void updateList(){
-        //Todo: Update the list
+    public void deleteItem() {
+        Log.d(TAG, "Entered deleteItem");
+        ArrayList<Grocery> groceryArrayList = FirebaseHelper.readFromFireBaseDatabase();
+        Grocery currentObject = getObject();
+        for (int i=0; i< groceryArrayList.size(); i++){
+            if (groceryArrayList.get(i).getItem().equals(currentObject.getItem())){
+                groceryArrayList.remove(i);
+            }
+        }
+        FirebaseHelper.addToFirebaseDatabase(groceryArrayList);
+        finish();
     }
 
     @Override
