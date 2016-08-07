@@ -114,7 +114,7 @@
             </objects>
             <point key="canvasLocation" x="899" y="978"/>
         </scene>
-        <!--Shopping List-->
+        <!--List-->
         <scene sceneID="ePN-5k-ab8">
             <objects>
                 <tableViewController id="EGp-Tr-4E4" customClass="TableViewController" customModule="CPMD_Week2" customModuleProvider="target" sceneMemberID="viewController">
@@ -123,22 +123,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="6af-yZ-f2z">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reuseIdentifier" id="6af-yZ-f2z" customClass="CustomCell" customModule="CPMD_Week2" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6af-yZ-f2z" id="x4W-Q8-51N">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kyq-wl-P5L">
+                                            <rect key="frame" x="39" y="8" width="11" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sample Item" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vs8-Ir-hgS">
+                                            <rect key="frame" x="58" y="8" width="235" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="amountLabel" destination="kyq-wl-P5L" id="3rR-ol-Cfl"/>
+                                    <outlet property="itemLabel" destination="Vs8-Ir-hgS" id="8tM-15-x6Q"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
+                        <sections/>
                         <connections>
                             <outlet property="dataSource" destination="EGp-Tr-4E4" id="bBn-Fy-XGX"/>
                             <outlet property="delegate" destination="EGp-Tr-4E4" id="0Op-5R-pSG"/>
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Shopping List" id="9vf-KF-RHs" userLabel="Shopping List">
+                    <navigationItem key="navigationItem" title="List" id="9vf-KF-RHs" userLabel="Shopping List">
                         <barButtonItem key="backBarButtonItem" title="Log In" id="i8P-y3-Qvq"/>
                         <barButtonItem key="rightBarButtonItem" title="Add" id="Stf-8i-mdB">
                             <connections>
