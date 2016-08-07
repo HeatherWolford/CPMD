@@ -1,11 +1,119 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="p1f-kc-pwx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="k0h-Ys-bST">
     <dependencies>
         <deployment identifier="iOS"/>
         <development version="5100" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
+        <!--Log In-->
+        <scene sceneID="UG0-zV-zaz">
+            <objects>
+                <viewController id="ze9-wt-5pz" customClass="LogInViewController" customModule="CPMD_Week2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6dT-gh-7YU"/>
+                        <viewControllerLayoutGuide type="bottom" id="xCI-N5-p5r"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qLs-u0-l4M">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="groceries.png" translatesAutoresizingMaskIntoConstraints="NO" id="3cN-4W-hzp">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter email address" borderStyle="roundedRect" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="hKF-3T-BKs">
+                                <rect key="frame" x="62" y="291" width="196" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter password" borderStyle="roundedRect" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="fmL-Nl-kvH">
+                                <rect key="frame" x="62" y="329" width="196" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sVY-lW-z8A">
+                                <rect key="frame" x="139" y="367" width="42" height="30"/>
+                                <state key="normal" title="Log In"/>
+                                <connections>
+                                    <segue destination="EGp-Tr-4E4" kind="push" id="IK9-Mz-wsl"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cRv-bE-kWz">
+                                <rect key="frame" x="107" y="405" width="107" height="30"/>
+                                <state key="normal" title="Create Account"/>
+                                <connections>
+                                    <segue destination="kIO-cN-cRy" kind="push" id="HJd-Wp-jX6"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Shopping List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AZE-b8-XKU">
+                                <rect key="frame" x="20" y="64" width="230" height="72"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Log In" id="tbf-hD-KVg"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="hKF-3T-BKs" id="5qe-if-2Aa"/>
+                        <outlet property="passwordTextField" destination="fmL-Nl-kvH" id="NGj-SJ-RH2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xpl-9Y-TnX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="899" y="312"/>
+        </scene>
+        <!--Create Account-->
+        <scene sceneID="XNF-vR-Ec3">
+            <objects>
+                <viewController id="kIO-cN-cRy" customClass="CreateAccountViewController" customModule="CPMD_Week2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qaH-tO-Onj"/>
+                        <viewControllerLayoutGuide type="bottom" id="CDD-BS-yMm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yc1-x8-hXD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="groceries.png" translatesAutoresizingMaskIntoConstraints="NO" id="tMZ-iB-vXA">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KFS-ww-IRt">
+                                <rect key="frame" x="133" y="381" width="55" height="30"/>
+                                <state key="normal" title="Sign Up"/>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter password" borderStyle="roundedRect" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="x5U-pu-qfy">
+                                <rect key="frame" x="62" y="343" width="196" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter email address" borderStyle="roundedRect" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="9fF-TN-Lc6">
+                                <rect key="frame" x="62" y="305" width="196" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Shopping List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NF6-Sz-kt4">
+                                <rect key="frame" x="20" y="64" width="230" height="72"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Create Account" id="3tq-sn-bY1">
+                        <barButtonItem key="backBarButtonItem" title="Log In" id="0aO-Xl-ii2"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="emailTextField" destination="9fF-TN-Lc6" id="8bZ-9N-1gb"/>
+                        <outlet property="passwordTextField" destination="x5U-pu-qfy" id="d5p-l8-JVx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oJD-EK-oV3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="899" y="978"/>
+        </scene>
         <!--Shopping List-->
         <scene sceneID="ePN-5k-ab8">
             <objects>
@@ -31,7 +139,7 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Shopping List" id="9vf-KF-RHs" userLabel="Shopping List">
-                        <barButtonItem key="backBarButtonItem" title="List" id="i8P-y3-Qvq"/>
+                        <barButtonItem key="backBarButtonItem" title="Log In" id="i8P-y3-Qvq"/>
                         <barButtonItem key="rightBarButtonItem" title="Add" id="Stf-8i-mdB">
                             <connections>
                                 <segue destination="hRy-8g-xC9" kind="push" id="GHy-4F-Jp3"/>
@@ -43,7 +151,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dyt-DB-EGU" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="fsY-lS-Qbw" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="750" y="312"/>
+            <point key="canvasLocation" x="1282" y="312"/>
         </scene>
         <!--Add Item to List-->
         <scene sceneID="FBd-KQ-ASq">
@@ -100,29 +208,29 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Yu-Ki-UXc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1129" y="312"/>
+            <point key="canvasLocation" x="1661" y="312"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="h4O-a5-ebF">
+        <scene sceneID="TTx-g1-IKz">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="p1f-kc-pwx" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="k0h-Ys-bST" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="cTI-Nt-hOl"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UWL-eZ-elj">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="x55-Ga-vB2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="EGp-Tr-4E4" kind="relationship" relationship="rootViewController" id="Vus-Cg-XPk"/>
+                        <segue destination="ze9-wt-5pz" kind="relationship" relationship="rootViewController" id="jhg-aD-ySX"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="G5h-FW-f62" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zpd-OU-MM7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="360" y="312"/>
+            <point key="canvasLocation" x="508" y="312"/>
         </scene>
     </scenes>
     <resources>
         <image name="GroceryBag.jpg" width="2224" height="2487"/>
+        <image name="groceries.png" width="1242" height="2208"/>
     </resources>
 </document>
