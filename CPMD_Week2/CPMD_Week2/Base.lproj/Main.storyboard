@@ -31,11 +31,17 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Shopping List" id="9vf-KF-RHs" userLabel="Shopping List">
-                        <barButtonItem key="rightBarButtonItem" title="Add" id="Stf-8i-mdB"/>
+                        <barButtonItem key="backBarButtonItem" title="List" id="i8P-y3-Qvq"/>
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="Stf-8i-mdB">
+                            <connections>
+                                <segue destination="hRy-8g-xC9" kind="push" id="GHy-4F-Jp3"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dyt-DB-EGU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="fsY-lS-Qbw" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="750" y="312"/>
         </scene>
@@ -50,9 +56,47 @@
                     <view key="view" contentMode="scaleToFill" id="pWu-ZO-p7A">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hqj-dZ-zKR">
+                                <rect key="frame" x="20" y="101" width="280" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="yes" spellCheckingType="yes" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Item:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Prp-YJ-Rqg">
+                                <rect key="frame" x="20" y="72" width="280" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Quantity:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4go-wL-9vX">
+                                <rect key="frame" x="20" y="139" width="280" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xhm-zI-g1Z">
+                                <rect key="frame" x="20" y="168" width="280" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="GroceryBag.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="tvg-5z-2nm">
+                                <rect key="frame" x="20" y="206" width="280" height="272"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dY8-cl-M8E">
+                                <rect key="frame" x="103" y="486" width="114" height="30"/>
+                                <state key="normal" title="Save Item to List"/>
+                                <connections>
+                                    <segue destination="fsY-lS-Qbw" kind="unwind" unwindAction="backToList:" id="nUk-uR-X9r"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add Item to List" id="sHC-fS-Kru"/>
+                    <connections>
+                        <outlet property="itemTextField" destination="hqj-dZ-zKR" id="i0U-Rf-4T3"/>
+                        <outlet property="qtyTextField" destination="Xhm-zI-g1Z" id="LpS-Mu-rN0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Yu-Ki-UXc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -78,4 +122,7 @@
             <point key="canvasLocation" x="360" y="312"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="GroceryBag.jpg" width="2224" height="2487"/>
+    </resources>
 </document>
