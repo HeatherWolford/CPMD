@@ -17,6 +17,10 @@ class TableViewController: UITableViewController {
         super.viewDidLoad()
         checkDatabaseForData()
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        checkDatabaseForData()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -59,11 +63,20 @@ class TableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-            //Delete from the database
-            //Update the dataArray
-            //Update the tableview
+            //Update the database
+            //let groceryItem = dataArray[indexPath.row]
+            dataArray.removeAtIndex(indexPath.row)
+            let user = FIRAuth.auth()?.currentUser
+            let userID = user?.uid
+            let rootRef = FIRDatabase.database().reference()
+            let userRef = rootRef.child(userID!)
+            var updatedArray: [AnyObject] = []
+            for grocery in dataArray{
+                updatedArray.append(grocery.toAnyObject())
+            }
+            userRef.setValue(updatedArray)
+            //Update the tableView
+            self.tableView.reloadData()
         }
     }
     
