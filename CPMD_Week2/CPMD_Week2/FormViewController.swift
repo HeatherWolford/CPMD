@@ -7,17 +7,20 @@
 //
 
 import UIKit
+import Firebase
 
 class FormViewController: UIViewController, UITextFieldDelegate {
     
     var itemName: String = ""
     var qty: Int = 0
+    var dataArray: [AnyObject] = []
 
     @IBOutlet weak var itemTextField: UITextField!
     @IBOutlet weak var qtyTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        checkDatabaseForData()
         loadUI()
     }
 
@@ -40,12 +43,40 @@ class FormViewController: UIViewController, UITextFieldDelegate {
     func dismissKeyboard() {
         view.endEditing(true)
     }
+    
+    func checkDatabaseForData(){
+        let user = FIRAuth.auth()?.currentUser
+        let userID = user?.uid
+        let rootRef = FIRDatabase.database().reference()
+        let userRef = rootRef.child(userID!)
+        userRef.observeEventType(.Value, withBlock: { snapshot in
+            var newItems = [AnyObject]()
+            for item in snapshot.children {
+                let groceryItem = Grocery(snapshot: item as! FIRDataSnapshot)
+                newItems.append(groceryItem.toAnyObject())
+            }
+            self.dataArray = newItems
+            print("checkDatabaseForData - Before adding item, the size of dataArray is " + String(self.dataArray.count))
+        })
+    }
 
-    // MARK: - Navigation
-    //Collect the input from the text fields
-    //Save the input from the text fields
-    //Navigate back to list and make sure it has been updated with info
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print("prepareForSegue");
+        if segue.destinationViewController is TableViewController{
+            print("prepareForSegue")
+            let user = FIRAuth.auth()?.currentUser
+            let userID = user?.uid
+            print("The value from itemTextField is " + itemTextField.text!)
+            print("The value from qtyTextField is " + qtyTextField.text!)
+            let item = itemTextField.text!
+            let amount = qtyTextField.text!
+            let intAmount = Int(amount)
+            let nsNumberAmount = NSNumber(integer:intAmount!)
+            let grocery = Grocery(item: item, amount: nsNumberAmount)
+            let rootRef = FIRDatabase.database().reference()
+            let userRef = rootRef.child(userID!)
+            print("prepareForSegue - Before adding item, the size of dataArray is " + String(dataArray.count))
+            dataArray.append(grocery.toAnyObject())
+            userRef.setValue(dataArray)
+        }
     }
 }

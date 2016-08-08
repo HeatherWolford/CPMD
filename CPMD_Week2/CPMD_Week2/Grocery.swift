@@ -7,14 +7,31 @@
 //
 
 import UIKit
+import Firebase
 
 class Grocery{
     
     //Member variables
-    var item: String = ""
-    var amount: Int = 0
+    var item: NSString = ""
+    var amount: NSNumber = 0
 
     //Class Constructor
     init(){
+    }
+
+    init(item: NSString, amount: NSNumber) {
+        self.item = item
+        self.amount = amount
+    }
+    
+    init(snapshot: FIRDataSnapshot) {
+        item = snapshot.value!["item"] as! NSString
+        amount = snapshot.value!["amount"] as! NSNumber
+    }
+    
+    func toAnyObject() -> AnyObject {
+        return [
+            "item": item,
+            "amount": amount]
     }
 }

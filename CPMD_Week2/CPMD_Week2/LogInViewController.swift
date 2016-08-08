@@ -24,6 +24,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         if (FIRAuth.auth()?.currentUser) != nil{
+            print("viewDidLoad - currentUser is " + (FIRAuth.auth()?.currentUser?.email)!)
             self.setUpUserSignedIn()
         }else{
             //User not signed in
@@ -69,7 +70,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             FIRAuth.auth()?.createUserWithEmail(emailTextField.text!, password: passwordTextField.text!) { (user, error) in
                 if error == nil{
                     //User was created
-                    print("The email is " + self.emailTextField.text! + " and the password is " + self.passwordTextField.text!)
+                    print("createAccountAction - The email is " + self.emailTextField.text! + " and the password is " + self.passwordTextField.text!)
                     self.setUpUserSignedIn()
                 }else{
                     //User was not created
@@ -112,7 +113,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     }
     
     func setUpUserSignedIn(){
-        print("The email is " + self.emailTextField.text! + " and the password is " + self.passwordTextField.text!)
         //Update UI
         self.emailTextField.hidden = true
         self.passwordTextField.hidden = true

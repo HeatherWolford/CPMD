@@ -11,10 +11,11 @@ import Firebase
 
 class TableViewController: UITableViewController {
 
-    var dataArray: [Grocery] = [Grocery]()
+    var dataArray = [Grocery]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        checkDatabaseForData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,15 +35,18 @@ class TableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //Return the number of rows
+        print("numberOfRowsInSection - the dataArray size is " + String(dataArray.count))
         return dataArray.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier") as! CustomCell
-        //let current: Grocery = dataArray[indexPath.row]
+        var newArray: [Grocery] = [Grocery]()
+        newArray = dataArray
+        let current: Grocery = newArray[indexPath.row]
         // Configure the cell...
-        //cell.amountLabel.text = String(current.amount)
-        //cell.itemLabel.text = current.item
+        cell.amountLabel.text = String(current.amount)
+        cell.itemLabel.text = current.item as String
         return cell
     }
 
@@ -61,5 +65,22 @@ class TableViewController: UITableViewController {
             //Update the dataArray
             //Update the tableview
         }
+    }
+    
+    func checkDatabaseForData(){
+        let user = FIRAuth.auth()?.currentUser
+        let userID = user?.uid
+        let rootRef = FIRDatabase.database().reference()
+        let userRef = rootRef.child(userID!)
+        userRef.observeEventType(.Value, withBlock: { snapshot in
+            var newItems = [Grocery]()
+            for item in snapshot.children {
+                let groceryItem = Grocery(snapshot: item as! FIRDataSnapshot)
+                newItems.append(groceryItem)
+            }
+            self.dataArray = newItems
+            print("checkDatabaseForData - Before adding item, the size of dataArray is " + String(self.dataArray.count))
+            self.tableView.reloadData()
+        })
     }
 }
