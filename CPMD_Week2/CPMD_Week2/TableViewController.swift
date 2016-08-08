@@ -15,10 +15,12 @@ class TableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("TableViewController - viewDidLoad")
         checkDatabaseForData()
     }
     
     override func viewWillAppear(animated: Bool) {
+        print("TableViewController - viewWillAppear")
         checkDatabaseForData()
     }
 
@@ -83,6 +85,7 @@ class TableViewController: UITableViewController {
     func checkDatabaseForData(){
         let user = FIRAuth.auth()?.currentUser
         let userID = user?.uid
+        print("TableViewController - checkDatabaseForData - The current user email is " + (user?.email)!)
         let rootRef = FIRDatabase.database().reference()
         let userRef = rootRef.child(userID!)
         userRef.observeEventType(.Value, withBlock: { snapshot in
@@ -91,8 +94,8 @@ class TableViewController: UITableViewController {
                 let groceryItem = Grocery(snapshot: item as! FIRDataSnapshot)
                 newItems.append(groceryItem)
             }
+            self.dataArray.removeAll()
             self.dataArray = newItems
-            print("checkDatabaseForData - Before adding item, the size of dataArray is " + String(self.dataArray.count))
             self.tableView.reloadData()
         })
     }

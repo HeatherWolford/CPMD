@@ -24,7 +24,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         if (FIRAuth.auth()?.currentUser) != nil{
-            print("viewDidLoad - currentUser is " + (FIRAuth.auth()?.currentUser?.email)!)
+            print("LogInViewCOntroller - viewDidLoad - currentUser is " + (FIRAuth.auth()?.currentUser?.email)!)
             self.setUpUserSignedIn()
         }else{
             //User not signed in
