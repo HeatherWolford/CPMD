@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     
@@ -42,15 +43,21 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         view.endEditing(true)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.destinationViewController is LogInViewController{
+            if emailTextField.text == "" || passwordTextField.text == "" {
+                //alert
+                let alert = UIAlertController(title: "Alert!", message: "You can not continue until all of the fields have text.", preferredStyle: UIAlertControllerStyle.Alert)
+                let okButton = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
+                alert.addAction(okButton)
+                presentViewController(alert, animated: true, completion: nil)
+            }else{
+                //Attempt to create account
+                print("Attempting to create account")
+                FIRAuth.auth()?.signInWithEmail(emailTextField.text!, password: passwordTextField.text!) { (user, error) in
+                    print("The email is " + self.emailTextField.text! + " and the password is " + self.passwordTextField.text!)
+                }
+            }
+        }
     }
-    */
-
 }
