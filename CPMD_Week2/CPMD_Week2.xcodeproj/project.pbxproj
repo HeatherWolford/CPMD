@@ -15,9 +15,6 @@
 		E919F69A1D566AE00053F00D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E919F6981D566AE00053F00D /* LaunchScreen.storyboard */; };
 		E919F6A51D566AE00053F00D /* CPMD_Week2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E919F6A41D566AE00053F00D /* CPMD_Week2Tests.swift */; };
 		E919F6B01D566AE00053F00D /* CPMD_Week2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E919F6AF1D566AE00053F00D /* CPMD_Week2UITests.swift */; };
-		E919F6BE1D5670FC0053F00D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E919F6BD1D5670FC0053F00D /* GoogleService-Info.plist */; };
-		E919F6BF1D5670FC0053F00D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E919F6BD1D5670FC0053F00D /* GoogleService-Info.plist */; };
-		E919F6C01D5670FC0053F00D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E919F6BD1D5670FC0053F00D /* GoogleService-Info.plist */; };
 		E919F6C21D5698330053F00D /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E919F6C11D5698330053F00D /* TableViewController.swift */; };
 		E919F6C41D569C0A0053F00D /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E919F6C31D569C0A0053F00D /* FormViewController.swift */; };
 		E919F6C71D56B6B20053F00D /* GroceryBag.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E919F6C61D56B6B20053F00D /* GroceryBag.jpg */; };
@@ -25,6 +22,7 @@
 		E919F6CD1D57B99D0053F00D /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E919F6CC1D57B99D0053F00D /* LogInViewController.swift */; };
 		E919F6D11D57C6910053F00D /* Grocery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E919F6D01D57C6910053F00D /* Grocery.swift */; };
 		E919F6D31D57CB1E0053F00D /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E919F6D21D57CB1E0053F00D /* CustomCell.swift */; };
+		E919F6D91D5A5E8E0053F00D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E919F6D81D5A5E8E0053F00D /* GoogleService-Info.plist */; };
 		EE0EE550804C67F3A837EF6B /* Pods_CPMD_Week2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6AC81722B22A3DFDAFC51D2 /* Pods_CPMD_Week2.framework */; };
 /* End PBXBuildFile section */
 
@@ -66,7 +64,6 @@
 		E919F6AB1D566AE00053F00D /* CPMD_Week2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CPMD_Week2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E919F6AF1D566AE00053F00D /* CPMD_Week2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPMD_Week2UITests.swift; sourceTree = "<group>"; };
 		E919F6B11D566AE00053F00D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E919F6BD1D5670FC0053F00D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E919F6C11D5698330053F00D /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		E919F6C31D569C0A0053F00D /* FormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
 		E919F6C61D56B6B20053F00D /* GroceryBag.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = GroceryBag.jpg; sourceTree = "<group>"; };
@@ -74,6 +71,7 @@
 		E919F6CC1D57B99D0053F00D /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		E919F6D01D57C6910053F00D /* Grocery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grocery.swift; sourceTree = "<group>"; };
 		E919F6D21D57CB1E0053F00D /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		E919F6D81D5A5E8E0053F00D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FAAB68ABE48F24ABBFCBCC48 /* Pods_CPMD_Week2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CPMD_Week2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -164,7 +162,7 @@
 				E919F6981D566AE00053F00D /* LaunchScreen.storyboard */,
 				E919F6C51D56B5830053F00D /* Images */,
 				E919F69B1D566AE00053F00D /* Info.plist */,
-				E919F6BD1D5670FC0053F00D /* GoogleService-Info.plist */,
+				E919F6D81D5A5E8E0053F00D /* GoogleService-Info.plist */,
 			);
 			path = CPMD_Week2;
 			sourceTree = "<group>";
@@ -313,10 +311,10 @@
 			files = (
 				E919F6C71D56B6B20053F00D /* GroceryBag.jpg in Resources */,
 				E919F69A1D566AE00053F00D /* LaunchScreen.storyboard in Resources */,
-				E919F6BE1D5670FC0053F00D /* GoogleService-Info.plist in Resources */,
 				E919F6CB1D57B55C0053F00D /* groceries.png in Resources */,
 				E919F6971D566AE00053F00D /* Assets.xcassets in Resources */,
 				E919F6951D566AE00053F00D /* Main.storyboard in Resources */,
+				E919F6D91D5A5E8E0053F00D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,7 +322,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E919F6BF1D5670FC0053F00D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,7 +329,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E919F6C01D5670FC0053F00D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -618,6 +614,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fullsail.hwolford.CPMD-Week2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -630,6 +628,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fullsail.hwolford.CPMD-Week2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};

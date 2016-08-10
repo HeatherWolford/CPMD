@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>404734307682-secbuml1lbd1sui9fu17tti7t61v4rcf.apps.googleusercontent.com</string>
+	<string>280501527794-kv0nm6j3o4hbvjiusqne3dc7874ch9o3.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.404734307682-secbuml1lbd1sui9fu17tti7t61v4rcf</string>
+	<string>com.googleusercontent.apps.280501527794-kv0nm6j3o4hbvjiusqne3dc7874ch9o3</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBR7lF2lvmEJpuwDsGixLos81Eu7wjxgrE</string>
+	<string>AIzaSyDuJ_meTpyzqcPQ38td7xMtzrv_Lq2l4UA</string>
 	<key>GCM_SENDER_ID</key>
-	<string>404734307682</string>
+	<string>280501527794</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.fullsail.hwolford.CPMD-Week2</string>
 	<key>PROJECT_ID</key>
-	<string>cpmdweek2</string>
+	<string>cpmdweek1</string>
 	<key>STORAGE_BUCKET</key>
-	<string>cpmdweek2.appspot.com</string>
+	<string>cpmdweek1.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:404734307682:ios:fa4a942a0a49e4d1</string>
+	<string>1:280501527794:ios:fa4a942a0a49e4d1</string>
 	<key>DATABASE_URL</key>
-	<string>https://cpmdweek2.firebaseio.com</string>
+	<string>https://cpmdweek1.firebaseio.com</string>
 </dict>
 </plist>
