@@ -23,14 +23,9 @@
                                 <rect key="frame" x="0.0" y="83" width="320" height="485"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter email address" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="hKF-3T-BKs">
-                                <rect key="frame" x="58" y="244" width="204" height="30"/>
+                                <rect key="frame" x="67" y="244" width="191" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="fmL-Nl-kvH">
-                                <rect key="frame" x="58" y="282" width="204" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sVY-lW-z8A">
                                 <rect key="frame" x="139" y="320" width="42" height="30"/>
@@ -84,6 +79,11 @@
                                     <segue destination="EGp-Tr-4E4" kind="push" id="xPj-Gh-UaQ"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="fmL-Nl-kvH">
+                                <rect key="frame" x="67" y="282" width="191" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -91,7 +91,7 @@
                             <constraint firstItem="AZE-b8-XKU" firstAttribute="leading" secondItem="owC-Mm-Bio" secondAttribute="leading" id="8cU-cp-g4a"/>
                             <constraint firstItem="I5h-vA-bmX" firstAttribute="top" secondItem="JTY-1L-L7B" secondAttribute="bottom" constant="8" symbolic="YES" id="CbC-WU-kRd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="AZE-b8-XKU" secondAttribute="trailing" constant="50" id="FUH-E4-zS0"/>
-                            <constraint firstItem="fmL-Nl-kvH" firstAttribute="centerX" secondItem="sVY-lW-z8A" secondAttribute="centerX" id="K3W-x5-JC0"/>
+                            <constraint firstItem="fmL-Nl-kvH" firstAttribute="centerX" secondItem="sVY-lW-z8A" secondAttribute="centerX" constant="2.5" id="K3W-x5-JC0"/>
                             <constraint firstItem="cRv-bE-kWz" firstAttribute="centerX" secondItem="owC-Mm-Bio" secondAttribute="centerX" constant="25.5" id="KJ7-dE-qpa"/>
                             <constraint firstItem="AZE-b8-XKU" firstAttribute="top" secondItem="6dT-gh-7YU" secondAttribute="bottom" id="OX1-5o-adJ"/>
                             <constraint firstItem="3cN-4W-hzp" firstAttribute="bottom" secondItem="xCI-N5-p5r" secondAttribute="top" id="Qpc-Em-M6y"/>
@@ -101,7 +101,7 @@
                             <constraint firstItem="3cN-4W-hzp" firstAttribute="centerX" secondItem="I5h-vA-bmX" secondAttribute="centerX" id="Z56-jv-qxX"/>
                             <constraint firstItem="ADi-lX-Spv" firstAttribute="top" secondItem="owC-Mm-Bio" secondAttribute="bottom" constant="8" symbolic="YES" id="acW-06-gVl"/>
                             <constraint firstItem="cRv-bE-kWz" firstAttribute="top" secondItem="sVY-lW-z8A" secondAttribute="bottom" constant="8" symbolic="YES" id="bvV-SB-Y6b"/>
-                            <constraint firstItem="hKF-3T-BKs" firstAttribute="leading" secondItem="qLs-u0-l4M" secondAttribute="leadingMargin" constant="42" id="d5n-Fh-Kfc"/>
+                            <constraint firstItem="hKF-3T-BKs" firstAttribute="leading" secondItem="qLs-u0-l4M" secondAttribute="leadingMargin" constant="51" id="d5n-Fh-Kfc"/>
                             <constraint firstItem="sVY-lW-z8A" firstAttribute="centerX" secondItem="cRv-bE-kWz" secondAttribute="centerX" id="iP7-Pw-pLs"/>
                             <constraint firstItem="fmL-Nl-kvH" firstAttribute="top" secondItem="hKF-3T-BKs" secondAttribute="bottom" constant="8" symbolic="YES" id="jKR-iM-HFx"/>
                             <constraint firstItem="AZE-b8-XKU" firstAttribute="leading" secondItem="ADi-lX-Spv" secondAttribute="leading" id="our-kh-csr"/>
