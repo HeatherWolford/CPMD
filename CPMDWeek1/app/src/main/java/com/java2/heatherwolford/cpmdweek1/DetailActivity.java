@@ -67,14 +67,14 @@ public class DetailActivity extends AppCompatActivity implements DetailFragment.
 
     public void deleteItem() {
         Log.d(TAG, "Entered deleteItem");
-        ArrayList<Grocery> groceryArrayList = FirebaseHelper.readFromFireBaseDatabase();
+        ArrayList<Grocery> groceryArrayList = FirebaseHelper.readFromFireBaseDatabase(getApplicationContext());
         Grocery currentObject = getObject();
         for (int i=0; i< groceryArrayList.size(); i++){
             if (groceryArrayList.get(i).getItem().equals(currentObject.getItem())){
                 groceryArrayList.remove(i);
             }
         }
-        FirebaseHelper.addToFirebaseDatabase(groceryArrayList);
+        FirebaseHelper.addToFirebaseDatabase(getApplicationContext(), groceryArrayList);
         finish();
     }
 

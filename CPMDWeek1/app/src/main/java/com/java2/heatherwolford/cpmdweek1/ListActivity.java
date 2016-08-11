@@ -80,7 +80,7 @@ public class ListActivity extends AppCompatActivity implements ListFragment.Cust
             @Override
             public void onReceive(Context context, Intent intent) {
                 System.out.println(TAG + "Entered the Broadcast Receiver.");
-                groceryArrayList = (ArrayList<Grocery>) intent.getSerializableExtra(FirebaseHelper.EXTRA_LIST);
+                groceryArrayList = (ArrayList<Grocery>) intent.getSerializableExtra(CustomIntentService.EXTRA_LIST);
                 Log.d(TAG, "The size of the groceryArrayList is " + groceryArrayList.size());
                 ListView listView = (ListView) findViewById(R.id.list);
                 CustomAdapter customAdapter = new CustomAdapter(ListActivity.this, groceryArrayList);
@@ -111,7 +111,7 @@ public class ListActivity extends AppCompatActivity implements ListFragment.Cust
     @Override
     public void viewItem(int position) throws IOException {
         System.out.println(TAG + "viewItem.");
-        groceryArrayList = FirebaseHelper.readFromFireBaseDatabase();
+        groceryArrayList = FirebaseHelper.readFromFireBaseDatabase(getApplicationContext());
         currentPosition = position;
         Intent detailIntent = new Intent(this, DetailActivity.class);
         detailIntent.putExtra(DetailActivity.ITEM_EXTRA, groceryArrayList.get(position));

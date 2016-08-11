@@ -74,10 +74,10 @@ public class FormActivity extends AppCompatActivity {
 
     public void addItem(Grocery item) {
         Log.d(TAG, "Entered addItem");
-        ArrayList<Grocery> groceryArrayList = FirebaseHelper.readFromFireBaseDatabase();
+        ArrayList<Grocery> groceryArrayList = FirebaseHelper.readFromFireBaseDatabase(getApplicationContext());
         groceryArrayList.add(item);
         Log.d(TAG, "The size of groceryArrayList after adding the item is now: " + groceryArrayList.size());
-        FirebaseHelper.addToFirebaseDatabase(groceryArrayList);
+        FirebaseHelper.addToFirebaseDatabase(getApplicationContext(), groceryArrayList);
         finish();
     }
 

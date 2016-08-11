@@ -5,8 +5,7 @@
 package com.java2.heatherwolford.cpmdweek1;
 
 import android.app.Application;
-import android.content.Intent;
-import android.support.v4.content.LocalBroadcastManager;
+import android.content.Context;
 import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,7 +28,6 @@ public class FirebaseHelper extends Application{
     private static FirebaseAuth mAuth;
     private static String mUser;
     private static ArrayList<Grocery> groceryArrayList = new ArrayList<>();
-    public static LocalBroadcastManager broadcaster;
     public static final String RESULT = "RESULT";
     public static final String EXTRA_LIST = "EXTRA_LIST";
 
@@ -37,7 +35,6 @@ public class FirebaseHelper extends Application{
     public void onCreate() {
         super.onCreate();
         instance = this;
-        broadcaster = LocalBroadcastManager.getInstance(this);
     }
 
     public static FirebaseHelper getInstance(){
@@ -45,17 +42,17 @@ public class FirebaseHelper extends Application{
     }
 
     //Save items to Firebase Database
-    public static void addToFirebaseDatabase(ArrayList<Grocery> list){
+    public static void addToFirebaseDatabase(Context context, ArrayList<Grocery> list){
         Log.d(TAG, "addToFirebaseDatabase - the size of the list to be saved is:" + list.size());
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser().getUid();
         mDatabase = FirebaseDatabase.getInstance();
         listRef = mDatabase.getReference(mUser);
         listRef.setValue(list);
-        readFromFireBaseDatabase();
+        readFromFireBaseDatabase(context);
     }
 
-    public static ArrayList<Grocery> readFromFireBaseDatabase(){
+    public static ArrayList<Grocery> readFromFireBaseDatabase(final Context context){
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser().getUid();
         mDatabase = FirebaseDatabase.getInstance();
@@ -81,11 +78,8 @@ public class FirebaseHelper extends Application{
                         Grocery grocery = new Grocery(item, quantity);
                         groceryArrayList.add(grocery);
                     }
-                    Intent intent = new Intent(RESULT);
-                    intent.putExtra(EXTRA_LIST, groceryArrayList);
-                    broadcaster = LocalBroadcastManager.getInstance(getInstance());
-                    broadcaster.sendBroadcast(intent);
-                    Log.d(TAG, "Should have gone to broadcast receiver");
+                    Log.d(TAG, "onDataChange - the groceryArrayList size is " + groceryArrayList.size());
+                    CustomIntentService.startActionUpdateList(context, groceryArrayList);
                 }
             }
             @Override

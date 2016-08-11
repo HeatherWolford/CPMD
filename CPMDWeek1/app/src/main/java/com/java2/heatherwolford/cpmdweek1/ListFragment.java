@@ -59,7 +59,7 @@ public class ListFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        ArrayList<Grocery> arrayList = FirebaseHelper.readFromFireBaseDatabase();
+        ArrayList<Grocery> arrayList = FirebaseHelper.readFromFireBaseDatabase(getActivity().getApplicationContext());
 
         ListView strainListView = (ListView) getView().findViewById(R.id.list);
         CustomAdapter customAdapter = new CustomAdapter(getActivity(), arrayList);
