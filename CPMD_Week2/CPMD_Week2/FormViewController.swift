@@ -67,16 +67,23 @@ class FormViewController: UIViewController, UITextFieldDelegate {
             let userID = user?.uid
             print("The value from itemTextField is " + itemTextField.text!)
             print("The value from qtyTextField is " + qtyTextField.text!)
-            let item = itemTextField.text!
-            let amount = qtyTextField.text!
-            let intAmount = Int(amount)
-            let nsNumberAmount = NSNumber(integer:intAmount!)
-            let grocery = Grocery(item: item, amount: nsNumberAmount)
-            let rootRef = FIRDatabase.database().reference()
-            let userRef = rootRef.child(userID!)
-            print("prepareForSegue - Before adding item, the size of dataArray is " + String(dataArray.count))
-            dataArray.append(grocery.toAnyObject())
-            userRef.setValue(dataArray)
+            if (itemTextField.text == "" || qtyTextField.text == ""){
+                let alert = UIAlertController(title: "Alert!", message: "Please enter both an item and quantity.", preferredStyle: UIAlertControllerStyle.Alert)
+                let okButton = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil)
+                alert.addAction(okButton)
+                presentViewController(alert, animated: true, completion: nil)
+            }else{
+                let item = itemTextField.text!
+                let amount = qtyTextField.text!
+                let intAmount = Int(amount)
+                let nsNumberAmount = NSNumber(integer:intAmount!)
+                let grocery = Grocery(item: item, amount: nsNumberAmount)
+                let rootRef = FIRDatabase.database().reference()
+                let userRef = rootRef.child(userID!)
+                print("prepareForSegue - Before adding item, the size of dataArray is " + String(dataArray.count))
+                dataArray.append(grocery.toAnyObject())
+                userRef.setValue(dataArray)
+            }
         }
     }
 }
