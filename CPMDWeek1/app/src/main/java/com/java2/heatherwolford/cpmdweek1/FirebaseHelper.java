@@ -35,6 +35,9 @@ public class FirebaseHelper extends Application{
     public void onCreate() {
         super.onCreate();
         instance = this;
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference("mUser");
+        dataRef.keepSynced(true);
     }
 
     public static FirebaseHelper getInstance(){

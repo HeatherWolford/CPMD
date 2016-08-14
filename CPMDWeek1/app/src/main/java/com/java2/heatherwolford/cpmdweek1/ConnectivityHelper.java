@@ -13,28 +13,30 @@ public class ConnectivityHelper extends Application {
 
     private static final String TAG = "ConnectivityHelper";
     private static ConnectivityHelper instance;
-    private static Context context;
-    private static ConnectivityManager cm;
     private static String type;
 
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
-        context = getApplicationContext();
-        cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
     }
 
     public static ConnectivityHelper getInstance(){
         return instance;
     }
 
-    public static boolean isConnected(){
+    public static boolean isConnected(Context context){
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+        if (activeNetwork != null && activeNetwork.isConnectedOrConnecting()){
+            return true;
+        }else{
+            return false;
+        }
     }
 
-    public static String getType(){
+    public static String getType(Context context){
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI){
             type = "WiFi";
