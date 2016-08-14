@@ -10,13 +10,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.EditText;
 
 public class DetailFragment extends Fragment {
 
     private final String TAG = "DetailFragment";
 
     private DetailListener listener;
+    View rootView;
 
     public interface DetailListener{
         public Grocery getObject();
@@ -39,7 +40,7 @@ public class DetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
+        rootView = inflater.inflate(R.layout.fragment_detail, container, false);
         return rootView;
     }
 
@@ -48,9 +49,9 @@ public class DetailFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         String item = listener.getObject().getItem();
         int quantity = listener.getObject().getAmount();
-        TextView textView = (TextView) getView().findViewById(R.id.item);
-        textView.setText(item);
-        textView = (TextView) getView().findViewById(R.id.quantity);
-        textView.setText(String.valueOf(quantity));
+        EditText itemEditText = (EditText) rootView.findViewById(R.id.item_name);
+        itemEditText.setText(item);
+        EditText qtyEditText = (EditText) rootView.findViewById(R.id.item_qty);
+        qtyEditText.setText(String.valueOf(quantity));
     }
 }

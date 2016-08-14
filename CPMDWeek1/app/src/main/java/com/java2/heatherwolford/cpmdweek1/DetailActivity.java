@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -57,6 +59,8 @@ public class DetailActivity extends AppCompatActivity implements DetailFragment.
         int id = item.getItemId();
         if (id == R.id.action_delete) {
             deleteItem();
+        }else if (id == R.id.action_save) {
+            saveChange();
         }else{
             Intent listIntent = new Intent(this, ListActivity.class);
             startActivity(listIntent);
@@ -74,6 +78,37 @@ public class DetailActivity extends AppCompatActivity implements DetailFragment.
                 groceryArrayList.remove(i);
             }
         }
+        FirebaseHelper.addToFirebaseDatabase(getApplicationContext(), groceryArrayList);
+        finish();
+    }
+
+    public void saveChange() {
+        Log.d(TAG, "Entered saveChanges");
+        //Remove original item
+        deleteItem();
+        //Add updated item
+        EditText itemTxtInput = (EditText) findViewById(R.id.item_name);
+        EditText qtyTxtInput = (EditText) findViewById(R.id.item_qty);
+        if (itemTxtInput.getText().toString().equals("")){
+            Toast.makeText(this, "You must enter an item.", Toast.LENGTH_SHORT).show();
+        }else {
+            if (qtyTxtInput.getText().toString().equals("")) {
+                Toast.makeText(this, "You must enter a quantity.", Toast.LENGTH_SHORT).show();
+            }
+            String groceryItem = itemTxtInput.getText().toString();
+            Log.d(TAG, groceryItem);
+            int amount = Integer.parseInt(qtyTxtInput.getText().toString());
+            Log.d(TAG, String.valueOf(amount));
+            Grocery grocery = new Grocery(groceryItem, amount);
+            addItem(grocery);
+        }
+    }
+
+    public void addItem(Grocery item) {
+        Log.d(TAG, "Entered addItem");
+        ArrayList<Grocery> groceryArrayList = FirebaseHelper.readFromFireBaseDatabase(getApplicationContext());
+        groceryArrayList.add(item);
+        Log.d(TAG, "The size of groceryArrayList after adding the item is now: " + groceryArrayList.size());
         FirebaseHelper.addToFirebaseDatabase(getApplicationContext(), groceryArrayList);
         finish();
     }
