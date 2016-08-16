@@ -51,12 +51,14 @@ public class FormActivity extends AppCompatActivity {
         if (id == R.id.action_save) {
             EditText itemTxtInput = (EditText) findViewById(R.id.item_edit_text);
             EditText qtyTxtInput = (EditText) findViewById(R.id.qty_edit_text);
-            if (itemTxtInput.getText().toString().equals("")){
+            if (itemTxtInput.getText().toString().equals("")) {
                 Toast.makeText(this, "You must enter an item.", Toast.LENGTH_SHORT).show();
-            }else {
-                if (qtyTxtInput.getText().toString().equals("")) {
+            }else if (!isValidInput(itemTxtInput.getText())){
+                Toast.makeText(this, "Input limited to 40 characters.", Toast.LENGTH_SHORT).show();
+            }else if (qtyTxtInput.getText().toString().equals("")) {
+                    //Note validation of number input also in XML
                     Toast.makeText(this, "You must enter a quantity.", Toast.LENGTH_SHORT).show();
-                }
+            }else{
                 String groceryItem = itemTxtInput.getText().toString();
                 Log.d(TAG, groceryItem);
                 int amount = Integer.parseInt(qtyTxtInput.getText().toString());
@@ -70,6 +72,14 @@ public class FormActivity extends AppCompatActivity {
             finish();
         }
         return true;
+    }
+
+    public boolean isValidInput(CharSequence target) {
+        if (target.length() >= 11){
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public void addItem(Grocery item) {

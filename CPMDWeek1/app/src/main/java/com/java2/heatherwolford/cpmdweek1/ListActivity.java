@@ -7,13 +7,11 @@ package com.java2.heatherwolford.cpmdweek1;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -25,7 +23,6 @@ import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -77,7 +74,6 @@ public class ListActivity extends AppCompatActivity implements ListFragment.Cust
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser().getUid();
-        mDatabase = FirebaseDatabase.getInstance().getReference(mUser);
 
         receiver = new BroadcastReceiver() {
             @Override
@@ -139,20 +135,6 @@ public class ListActivity extends AppCompatActivity implements ListFragment.Cust
     @Override
     protected void onResume() {
         super.onResume();
-        if (!ConnectivityHelper.isConnected(this)){
-            //Offline Option
-            new AlertDialog.Builder(ListActivity.this)
-                    .setTitle("You are not connected to a network!")
-                    .setMessage("To use this app fully, you need to be connected to a network. Please check your settings.")
-                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            //What to do if user clicks yes
-                            closeContextMenu();
-                        }
-                    })
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
-        }
     }
 
     @Override
@@ -160,6 +142,11 @@ public class ListActivity extends AppCompatActivity implements ListFragment.Cust
         super.onStop();
         LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
     }
+
+    //Note to self, onDestroy, might be an option if I wanted to do something upon the user swiping away the app.
+    //This option does not meet the requirements for this particular project objective, but may come in handy when
+    //problem solving other app solutions in the future.  May need to do a user test to see how the users respond
+    //to the outcome.
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event){
