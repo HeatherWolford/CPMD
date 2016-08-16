@@ -7,11 +7,13 @@ package com.java2.heatherwolford.cpmdweek1;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -37,6 +39,7 @@ public class ListActivity extends AppCompatActivity implements ListFragment.Cust
     private String mUser;
     private DatabaseReference mDatabase;
     public BroadcastReceiver receiver;
+    public ListActivity mListReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +78,36 @@ public class ListActivity extends AppCompatActivity implements ListFragment.Cust
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser().getUid();
         mDatabase = FirebaseDatabase.getInstance().getReference(mUser);
+//        ValueEventListener listListener = new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                groceryArrayList.clear();
+//                ArrayList<Grocery> groceryList = new ArrayList<>();
+//                groceryList = (ArrayList<Grocery>) dataSnapshot.getValue();
+//                if (groceryList != null) {
+//                    for (int i = 0; i < groceryList.size(); i++) {
+//                        Map<String, Object> tempHash = new HashMap<>();
+//                        tempHash = (Map<String, Object>) groceryList.get(i);
+//                        String item = (String) tempHash.get("item");
+//                        Log.d(TAG, "The value of item is: " + item);
+//                        Long longQty = (Long) tempHash.get("amount");
+//                        int quantity = (int) (long) longQty;
+//                        Log.d(TAG, "The value of quantity is: " + quantity);
+//                        Grocery grocery = new Grocery(item, quantity);
+//                        groceryArrayList.add(grocery);
+//                    }
+//                }
+//                ListView listView = (ListView) findViewById(R.id.list);
+//                CustomAdapter customAdapter = new CustomAdapter(ListActivity.this, groceryArrayList);
+//                listView.setAdapter(customAdapter);
+//            }
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                // Getting list failed, log a message
+//                Log.w(TAG, "onDataChange:loadList:onCancelled", databaseError.toException());
+//            }
+//        };
+//        mDatabase.child(mUser).addValueEventListener(listListener);
 
         receiver = new BroadcastReceiver() {
             @Override
@@ -104,6 +137,11 @@ public class ListActivity extends AppCompatActivity implements ListFragment.Cust
             Intent formIntent = new Intent(ListActivity.this, FormActivity.class);
             ListActivity.this.startActivity(formIntent);
             return true;
+        }else if (id == R.id.action_refresh){
+            groceryArrayList = FirebaseHelper.readFromFireBaseDatabase(this);
+            ListView listView = (ListView) findViewById(R.id.list);
+            CustomAdapter customAdapter = new CustomAdapter(ListActivity.this, groceryArrayList);
+            listView.setAdapter(customAdapter);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -131,6 +169,20 @@ public class ListActivity extends AppCompatActivity implements ListFragment.Cust
     @Override
     protected void onResume() {
         super.onResume();
+        if (!ConnectivityHelper.isConnected(this)){
+            //Offline Option
+            new AlertDialog.Builder(ListActivity.this)
+                    .setTitle("You are not connected to a network!")
+                    .setMessage("To use this app fully, you need to be connected to a network. Please check your settings.")
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            //What to do if user clicks yes
+                            closeContextMenu();
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
     }
 
     @Override

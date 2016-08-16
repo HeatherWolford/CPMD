@@ -81,9 +81,10 @@ public class FirebaseHelper extends Application{
                         Grocery grocery = new Grocery(item, quantity);
                         groceryArrayList.add(grocery);
                     }
-                    Log.d(TAG, "onDataChange - the groceryArrayList size is " + groceryArrayList.size());
-                    CustomIntentService.startActionUpdateList(context, groceryArrayList);
+
                 }
+                Log.d(TAG, "onDataChange - the groceryArrayList size is " + groceryArrayList.size());
+                CustomIntentService.startActionUpdateList(context, groceryArrayList);
             }
             @Override
             public void onCancelled(DatabaseError error) {
