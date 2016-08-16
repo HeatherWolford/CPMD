@@ -78,36 +78,6 @@ public class ListActivity extends AppCompatActivity implements ListFragment.Cust
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser().getUid();
         mDatabase = FirebaseDatabase.getInstance().getReference(mUser);
-//        ValueEventListener listListener = new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                groceryArrayList.clear();
-//                ArrayList<Grocery> groceryList = new ArrayList<>();
-//                groceryList = (ArrayList<Grocery>) dataSnapshot.getValue();
-//                if (groceryList != null) {
-//                    for (int i = 0; i < groceryList.size(); i++) {
-//                        Map<String, Object> tempHash = new HashMap<>();
-//                        tempHash = (Map<String, Object>) groceryList.get(i);
-//                        String item = (String) tempHash.get("item");
-//                        Log.d(TAG, "The value of item is: " + item);
-//                        Long longQty = (Long) tempHash.get("amount");
-//                        int quantity = (int) (long) longQty;
-//                        Log.d(TAG, "The value of quantity is: " + quantity);
-//                        Grocery grocery = new Grocery(item, quantity);
-//                        groceryArrayList.add(grocery);
-//                    }
-//                }
-//                ListView listView = (ListView) findViewById(R.id.list);
-//                CustomAdapter customAdapter = new CustomAdapter(ListActivity.this, groceryArrayList);
-//                listView.setAdapter(customAdapter);
-//            }
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                // Getting list failed, log a message
-//                Log.w(TAG, "onDataChange:loadList:onCancelled", databaseError.toException());
-//            }
-//        };
-//        mDatabase.child(mUser).addValueEventListener(listListener);
 
         receiver = new BroadcastReceiver() {
             @Override
