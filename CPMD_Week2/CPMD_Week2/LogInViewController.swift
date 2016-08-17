@@ -23,9 +23,16 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        FIRDatabase.database().persistenceEnabled = true
+        
         if (FIRAuth.auth()?.currentUser) != nil{
             print("LogInViewCOntroller - viewDidLoad - currentUser is " + (FIRAuth.auth()?.currentUser?.email)!)
             self.setUpUserSignedIn()
+            let user = FIRAuth.auth()?.currentUser
+            let userID = user?.uid
+            let rootRef = FIRDatabase.database().reference()
+            let userRef = rootRef.child(userID!)
+            userRef.keepSynced(true)
         }else{
             //User not signed in
             self.setUpUserNotSignedIn()

@@ -74,8 +74,14 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
             let userID = user?.uid
             print("The value from itemTextField is " + itemTextField.text!)
             print("The value from qtyTextField is " + qtyTextField.text!)
+            //Quantity input also validated via keyboard input
             if (itemTextField.text == "" || qtyTextField.text == ""){
                 let alert = UIAlertController(title: "Alert!", message: "Please enter both an item and quantity.", preferredStyle: UIAlertControllerStyle.Alert)
+                let okButton = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil)
+                alert.addAction(okButton)
+                presentViewController(alert, animated: true, completion: nil)
+            }else if itemTextField.text?.characters.count >= 31{
+                let alert = UIAlertController(title: "Alert!", message: "Input limited to 30 characters.", preferredStyle: UIAlertControllerStyle.Alert)
                 let okButton = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil)
                 alert.addAction(okButton)
                 presentViewController(alert, animated: true, completion: nil)
