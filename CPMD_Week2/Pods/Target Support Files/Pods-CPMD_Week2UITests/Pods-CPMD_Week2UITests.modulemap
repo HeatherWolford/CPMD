@@ -1,0 +1,6 @@
+framework module Pods_CPMD_Week2UITests {
+  umbrella header "Pods-CPMD_Week2UITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
