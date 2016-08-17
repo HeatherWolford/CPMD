@@ -54,7 +54,7 @@ public class FormActivity extends AppCompatActivity {
             if (itemTxtInput.getText().toString().equals("")) {
                 Toast.makeText(this, "You must enter an item.", Toast.LENGTH_SHORT).show();
             }else if (!isValidInput(itemTxtInput.getText())){
-                Toast.makeText(this, "Input limited to 40 characters.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Input limited to 30 characters.", Toast.LENGTH_SHORT).show();
             }else if (qtyTxtInput.getText().toString().equals("")) {
                     //Note validation of number input also in XML
                     Toast.makeText(this, "You must enter a quantity.", Toast.LENGTH_SHORT).show();
@@ -75,7 +75,7 @@ public class FormActivity extends AppCompatActivity {
     }
 
     public boolean isValidInput(CharSequence target) {
-        if (target.length() >= 11){
+        if (target.length() >= 31){
             return false;
         } else {
             return true;
