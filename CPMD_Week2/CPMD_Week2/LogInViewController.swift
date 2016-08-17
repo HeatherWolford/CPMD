@@ -72,6 +72,22 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                     //User was created
                     print("createAccountAction - The email is " + self.emailTextField.text! + " and the password is " + self.passwordTextField.text!)
                     self.setUpUserSignedIn()
+                }else if !self.isValidEmail(self.emailTextField.text!){
+                    //User was not created
+                    //alert
+                    let alert = UIAlertController(title: "Alert!", message: "The email entered is not valid.  Please add a valid email address.", preferredStyle: UIAlertControllerStyle.Alert)
+                    let okButton = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil)
+                    alert.addAction(okButton)
+                    self.presentViewController(alert, animated: true, completion: nil)
+                    self.setUpUserNotSignedIn()
+                }else if !self.isValidPassword(self.passwordTextField.text!){
+                    //User was not created
+                    //alert
+                    let alert = UIAlertController(title: "Alert!", message: "The password entered is not valid.  The password must have between 7 and 10 characters.", preferredStyle: UIAlertControllerStyle.Alert)
+                    let okButton = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil)
+                    alert.addAction(okButton)
+                    self.presentViewController(alert, animated: true, completion: nil)
+                    self.setUpUserNotSignedIn()
                 }else{
                     //User was not created
                     //alert
@@ -92,6 +108,23 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             let okButton = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil)
             alert.addAction(okButton)
             presentViewController(alert, animated: true, completion: nil)
+        }else if !self.isValidEmail(self.emailTextField.text!){
+            //User was not created
+            //alert
+            let alert = UIAlertController(title: "Alert!", message: "The email entered is not valid.  Please add a valid email address.", preferredStyle: UIAlertControllerStyle.Alert)
+            let okButton = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil)
+            alert.addAction(okButton)
+            self.presentViewController(alert, animated: true, completion: nil)
+            self.setUpUserNotSignedIn()
+        }else if !self.isValidPassword(self.passwordTextField.text!){
+            //User was not created
+            //alert
+            let alert = UIAlertController(title: "Alert!", message: "The password entered is not valid.  The password must have between 7 and 10 characters.", preferredStyle: UIAlertControllerStyle.Alert)
+            let okButton = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil)
+            alert.addAction(okButton)
+            self.presentViewController(alert, animated: true, completion: nil)
+            self.setUpUserNotSignedIn()
+
         }else{
             //Attempt to sign in
             print("Attempting to sign into account")
@@ -110,6 +143,18 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
+    }
+    
+    func isValidEmail(candidate: String) -> Bool {
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
+        return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluateWithObject(candidate)
+    }
+    
+    func isValidPassword(candidate: String) -> Bool{
+        if candidate.characters.count <= 6 || candidate.characters.count >= 11{
+            return false;
+        }
+        return true;
     }
     
     func setUpUserSignedIn(){

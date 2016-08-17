@@ -99,4 +99,13 @@ class TableViewController: UITableViewController {
             self.tableView.reloadData()
         })
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let detailView: DetailViewController = segue.destinationViewController as? DetailViewController{
+            let indexPath: NSIndexPath? = tableView.indexPathForSelectedRow
+            detailView.item = dataArray[indexPath!.row].item as String
+            detailView.qty = String(dataArray[indexPath!.row].amount)
+            detailView.currentIndexNumber = (indexPath?.row)!
+        }
+    }
 }
