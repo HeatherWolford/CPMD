@@ -23,6 +23,7 @@ import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -74,7 +75,7 @@ public class ListActivity extends AppCompatActivity implements ListFragment.Cust
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser().getUid();
-
+        mDatabase = FirebaseDatabase.getInstance().getReference(mUser);
         receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -86,6 +87,38 @@ public class ListActivity extends AppCompatActivity implements ListFragment.Cust
                 listView.setAdapter(customAdapter);
             }
         };
+
+//        Testing this code, trying to see if can get the data to update automatically:
+//        ValueEventListener listListener = new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                groceryArrayList.clear();
+//                ArrayList<Grocery> groceryList = new ArrayList<>();
+//                groceryList = (ArrayList<Grocery>) dataSnapshot.getValue();
+//                if (groceryList != null) {
+//                    for (int i = 0; i < groceryList.size(); i++) {
+//                        Map<String, Object> tempHash = new HashMap<>();
+//                        tempHash = (Map<String, Object>) groceryList.get(i);
+//                        String item = (String) tempHash.get("item");
+//                        Log.d(TAG, "The value of item is: " + item);
+//                        Long longQty = (Long) tempHash.get("amount");
+//                        int quantity = (int) (long) longQty;
+//                        Log.d(TAG, "The value of quantity is: " + quantity);
+//                        Grocery grocery = new Grocery(item, quantity);
+//                        groceryArrayList.add(grocery);
+//                    }
+//                    ListView listView = (ListView) findViewById(R.id.list);
+//                    CustomAdapter customAdapter = new CustomAdapter(ListActivity.this, groceryArrayList);
+//                    listView.setAdapter(customAdapter);
+//                }
+//            }
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                // Getting list failed, log a message
+//                Log.w(TAG, "onDataChange:loadList:onCancelled", databaseError.toException());
+//            }
+//        };
+//        mDatabase.child(mUser).addValueEventListener(listListener);
     }
 
     @Override
