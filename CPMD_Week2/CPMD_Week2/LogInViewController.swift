@@ -26,7 +26,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         FIRDatabase.database().persistenceEnabled = true
         
         if (FIRAuth.auth()?.currentUser) != nil{
-            print("LogInViewCOntroller - viewDidLoad - currentUser is " + (FIRAuth.auth()?.currentUser?.email)!)
+            print("LogInViewController - viewDidLoad - currentUser is " + (FIRAuth.auth()?.currentUser?.email)!)
             self.setUpUserSignedIn()
             let user = FIRAuth.auth()?.currentUser
             let userID = user?.uid
@@ -38,6 +38,10 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             self.setUpUserNotSignedIn()
         }
         setUpKeyboardForTap()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        //checkConnection()
     }
 
     override func didReceiveMemoryWarning() {

@@ -13,13 +13,41 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    private var reachability: Reachability!
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         // Use Firebase library to configure APIs
         FIRApp.configure()
+        do{
+            NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(AppDelegate.checkForReachability(_:)), name: ReachabilityChangedNotification, object: nil);
+            try self.reachability = Reachability.reachabilityForInternetConnection();
+            try self.reachability.startNotifier();
+        }catch{
+            print(error)
+        }
         return true
+    }
+    
+    func checkForReachability(notification:NSNotification){
+        let networkReachability = notification.object as! Reachability;
+        let remoteHostStatus = networkReachability.currentReachabilityStatus
+        print(remoteHostStatus)
+        
+        if String(remoteHostStatus) == "No Network Connection"{
+            print("Not Reachable")
+            let alert = UIAlertController(title: "No network detected!", message: "The device is not connected to a network. Please check your device settings.", preferredStyle: UIAlertControllerStyle.Alert)
+            let okButton = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil)
+            alert.addAction(okButton)
+            self.window?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
+        }else{
+            print("Reachable")
+            let alert = UIAlertController(title: "Network connection found!", message: "The device is now connected to a network.", preferredStyle: UIAlertControllerStyle.Alert)
+            let okButton = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil)
+            alert.addAction(okButton)
+            self.window?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
+        }
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -43,7 +71,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
 

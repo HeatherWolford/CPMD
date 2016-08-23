@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4FA51C4CCA20F863C72C1341 /* Pods_CPMD_Week2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA34160EF6384E77537D8E7 /* Pods_CPMD_Week2Tests.framework */; };
 		A821DE6C4523A6271AE74F75 /* Pods_CPMD_Week2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAAB68ABE48F24ABBFCBCC48 /* Pods_CPMD_Week2UITests.framework */; };
+		E9169EF21D6CCD9500A9367A /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9169EF11D6CCD9500A9367A /* Reachability.swift */; };
 		E919F6901D566AE00053F00D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E919F68F1D566AE00053F00D /* AppDelegate.swift */; };
 		E919F6951D566AE00053F00D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E919F6931D566AE00053F00D /* Main.storyboard */; };
 		E919F6971D566AE00053F00D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E919F6961D566AE00053F00D /* Assets.xcassets */; };
@@ -55,6 +56,7 @@
 		B4411FC2DD2C2803ED0168FF /* Pods-CPMD_Week2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CPMD_Week2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CPMD_Week2Tests/Pods-CPMD_Week2Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		CDA34160EF6384E77537D8E7 /* Pods_CPMD_Week2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CPMD_Week2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6AC81722B22A3DFDAFC51D2 /* Pods_CPMD_Week2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CPMD_Week2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9169EF11D6CCD9500A9367A /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		E919F68C1D566ADF0053F00D /* CPMD_Week2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CPMD_Week2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E919F68F1D566AE00053F00D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E919F6941D566AE00053F00D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				E919F6C31D569C0A0053F00D /* FormViewController.swift */,
 				E919F6D21D57CB1E0053F00D /* CustomCell.swift */,
 				E919F6D01D57C6910053F00D /* Grocery.swift */,
+				E9169EF11D6CCD9500A9367A /* Reachability.swift */,
 				E919F6931D566AE00053F00D /* Main.storyboard */,
 				E919F6961D566AE00053F00D /* Assets.xcassets */,
 				E919F6981D566AE00053F00D /* LaunchScreen.storyboard */,
@@ -475,6 +478,7 @@
 				E919F6901D566AE00053F00D /* AppDelegate.swift in Sources */,
 				E919F6D31D57CB1E0053F00D /* CustomCell.swift in Sources */,
 				E919F6D11D57C6910053F00D /* Grocery.swift in Sources */,
+				E9169EF21D6CCD9500A9367A /* Reachability.swift in Sources */,
 				E919F6E51D63A9910053F00D /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
